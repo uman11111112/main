@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Music Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MusicFlow</div>
+            <ul class="nav-links">
+                <li><a href="#bhajan">Bhajan</a></li>
+                <li><a href="#meditation">Meditation</a></li>
+                <li><a href="#old-songs">Old Songs</a></li>
+            </ul>
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search...">
+        </nav>
+    </header>
+
+    <main>
+        <section class="music-sections">
+            <div id="bhajan" class="dropdown-container">
+                <h2>Bhajan</h2>
+                <div class="dropdown-content">
+                    <ul class="song-list" data-category="bhajan">
+                        <li data-src="bhajan1.mp3"><img src="Untitled design (4).png" alt="Album Cover"><span>Bhajan Song 1</span><span class="play-icon">▶</span></li>
+                        <li data-src="bhajan 2.mp3"><img src="Untitled design (3).png" alt="Album Cover"><span>Bhajan Song 2</span><span class="play-icon">▶</span></li>
+                        <li data-src="Suno Krishna Pyaare  Swati Mishra Bhakti Song  Mohit Musik.mp3"><img src="Untitled design (7).png" alt="Album Cover"><span>Bhajan Song 3</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 9.mp3"><img src="Untitled design (6).png" alt="Album Cover"><span>Bhajan Song 4</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 5.mp3"><img src="Untitled design (5).png" alt="Album Cover"><span>Bhajan Song 5</span><span class="play-icon">▶</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="meditation" class="dropdown-container">
+                <h2>Meditation</h2>
+                <div class="dropdown-content">
+                    <ul class="song-list" data-category="meditation">
+                        <li data-src="med 1.mp3"><img src="nature1.png" alt="Album Cover"><span>Meditation Song 1</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 2.mp3"><img src="nature1 (1).png" alt="Album Cover"><span>Meditation Song 2</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 3.mp3"><img src="nature1 (2).png" alt="Album Cover"><span>Meditation Song 3</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 4.mp3"><img src="nature1 (3).png" alt="Album Cover"><span>Meditation Song 4</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 5.mp3"><img src="nature1 (4).png" alt="Album Cover"><span>Meditation Song 4</span><span class="play-icon">▶</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="old-songs" class="dropdown-container">
+                <h2>Old Songs</h2>
+                <div class="dropdown-content">
+                    <ul class="song-list" data-category="old-songs">
+                        <li data-src="old.mp3"><img src="https://via.placeholder.com/50" alt="Album Cover"><span>Old Song 1</span><span class="play-icon">▶</span></li>
+                        <li data-src="old 2.mp3"><img src="https://via.placeholder.com/50" alt="Album Cover"><span>Old Song 2</span><span class="play-icon">▶</span></li>
+                        <li data-src="Jai Dev Jai Dev Jai Mangal Murti - Sukh Karta Dukh Harta Full Aarti _ Ganesh Aarti _ Ganpati Aarti.mp3.mp3"><img src="https://via.placeholder.com/50" alt="Album Cover"><span>Old Song 3</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 8.mp3"><img src="https://via.placeholder.com/50" alt="Album Cover"><span>Old Song 4</span><span class="play-icon">▶</span></li>
+                        <li data-src="med 7.mp3"><img src="https://via.placeholder.com/50" alt="Album Cover"><span>Old Song 4</span><span class="play-icon">▶</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="now-playing">
+            <div class="now-playing-info">
+                <span class="now-playing-title">No Song Playing</span>
+                <span class="now-playing-artist">-</span>
+            </div>
+            <div class="controls">
+                <button class="control-button" id="prev-button">⏮️</button>
+                <button class="control-button play-pause-button" id="play-pause-button">Play</button>
+                <button class="control-button" id="next-button">⏭️</button>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="audio-player" src=""></audio>
+    <script>
+        // Get the audio player element
+        const audioPlayer = document.getElementById('audio-player');
+
+        // Get the now playing elements
+        const nowPlayingTitle = document.querySelector('.now-playing-title');
+        const nowPlayingArtist = document.querySelector('.now-playing-artist');
+
+        // Play/pause button
+        const playPauseButton = document.getElementById('play-pause-button');
+
+        // Variable to track the current song
+        let currentSong = null;
+
+        // Function to play a song
+        function playSong(songElement) {
+            const songSrc = songElement.getAttribute('data-src');
+            const songTitle = songElement.querySelector('span').textContent;
+            
+            // Set the source of the audio player
+            audioPlayer.src = songSrc;
+            
+            // Update the now playing info
+            nowPlayingTitle.textContent = songTitle;
+            nowPlayingArtist.textContent = 'Unknown Artist'; // You can update this if you have artist info
+            
+            // Play the audio
+            audioPlayer.play();
+            
+            // Update play/pause button to show 'Pause'
+            playPauseButton.textContent = 'Pause';
+            
+            // Set the current song
+            currentSong = songElement;
+        }
+
+        // Event listener for play/pause button
+        playPauseButton.addEventListener('click', function () {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audioPlayer.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        // Add event listeners to all song items
+        const songItems = document.querySelectorAll('.song-list li');
+        songItems.forEach(song => {
+            song.addEventListener('click', function () {
+                playSong(song);
+            });
+        });
+
+        // Previous/Next button functionality
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        // Function to get the next or previous song element
+        function getNextOrPrevSong(current, direction) {
+            const songList = Array.from(current.closest('ul').children);
+            const currentIndex = songList.indexOf(current);
+            const nextIndex = (currentIndex + direction + songList.length) % songList.length;
+            return songList[nextIndex];
+        }
+
+        // Event listener for the next button
+        nextButton.addEventListener('click', function () {
+            if (currentSong) {
+                const nextSong = getNextOrPrevSong(currentSong, 1);
+                playSong(nextSong);
+            }
+        });
+
+        // Event listener for the previous button
+        prevButton.addEventListener('click', function () {
+            if (currentSong) {
+                const prevSong = getNextOrPrevSong(currentSong, -1);
+                playSong(prevSong);
+            }
+        });
+    </script>
+</body>
+</html>
