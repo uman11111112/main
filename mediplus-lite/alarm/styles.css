@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+form label, form input, form button, form select {
+    margin: 5px;
+}
+
+form input, form select, form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+form button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #004494;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+}
+
+td input[type="checkbox"] {
+    transform: scale(1.5);
+}
+
+button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #c62828;
+}
+
+.snooze-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+.snooze-btn:hover {
+    background-color: #e68900;
+}
+
+.stop-btn {
+    background-color: #607d8b;
+    color: white;
+}
+
+.stop-btn:hover {
+    background-color: #455a64;
+}
