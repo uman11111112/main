@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contact & Mini Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #B6C7AA;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #74512D;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #74512D;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-section input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #B6C7AA;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .form-section button {
+            padding: 10px 20px;
+            background-color: #74512D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: #B6C7AA;
+        }
+
+        .games-section {
+            text-align: center;
+        }
+
+        .game {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            background-color: #E7D4B5;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .game:hover {
+            transform: scale(1.05);
+        }
+
+        .game a {
+            text-decoration: none;
+            color: #74512D;
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #74512D;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="volunteers.html">Volunteers</a>
+        <a href="physiotherapy.html">Physiotherapy</a>
+        <a href="#">Emergency & Games</a>
+    </div>
+
+    <div class="container">
+        <h1>Emergency Contact & Mini Games</h1>
+
+        <div class="form-section">
+            <h2>Emergency Contact</h2>
+            <label for="phone-number">Enter Mobile Number:</label>
+            <input type="tel" id="phone-number" placeholder="e.g., +1234567890">
+            <button onclick="savePhoneNumber()">Save Number</button>
+            <p id="confirmation-message" style="color: green; margin-top: 10px;"></p>
+        </div>
+
+        <div class="games-section">
+            <h2>Mini Games</h2>
+            <div class="game">
+                <a href="memory.html">Memory Match</a>
+            </div>
+            <div class="game">
+                <a href="number-puzzle.html">Number Puzzle</a>
+            </div>
+            <div class="game">
+                <a href="brain-teasers.html">Brain Teasers</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Elderly Aura | Compassionate Code
+    </div>
+
+    <script>
+        function savePhoneNumber() {
+            const phoneNumber = document.getElementById('phone-number').value;
+            if (phoneNumber) {
+                localStorage.setItem('emergencyContact', phoneNumber);
+                document.getElementById('confirmation-message').textContent = 'Emergency contact saved successfully!';
+            } else {
+                alert('Please enter a valid mobile number!');
+            }
+        }
+    </script>
+</body>
+</html>

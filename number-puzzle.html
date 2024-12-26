@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Puzzle Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #74512D;
+        }
+
+        .puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .tile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #E7D4B5;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .tile.empty {
+            background-color: #f2f2f2;
+            cursor: default;
+        }
+
+        .tile:hover {
+            background-color: #B6C7AA;
+        }
+
+        .reset-button {
+            padding: 10px 20px;
+            background-color: #74512D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .reset-button:hover {
+            background-color: #B6C7AA;
+        }
+
+        .footer {
+            background-color: #74512D;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Number Puzzle Game</h1>
+
+    <div class="puzzle-container" id="puzzle-container">
+        <!-- Puzzle tiles will be dynamically added here -->
+    </div>
+
+    <button class="reset-button" onclick="resetPuzzle()">Reset Puzzle</button>
+
+    <div class="footer">
+        &copy; 2024 Elderly Aura | Compassionate Code
+    </div>
+
+    <script>
+        // Number puzzle game logic
+        const puzzleSize = 3; // 3x3 puzzle (9 tiles)
+        const puzzleContainer = document.getElementById('puzzle-container');
+        let tiles = [];
+
+        // Initialize the puzzle
+        function initializePuzzle() {
+            tiles = [];
+            for (let i = 1; i <= puzzleSize * puzzleSize - 1; i++) {
+                tiles.push(i);
+            }
+            tiles.push(null); // Empty tile (null represents the empty space)
+
+            shufflePuzzle();
+        }
+
+        // Shuffle the puzzle tiles randomly
+        function shufflePuzzle() {
+            // Simple shuffle algorithm
+            for (let i = tiles.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+            }
+            renderPuzzle();
+        }
+
+        // Render the puzzle on the page
+        function renderPuzzle() {
+            puzzleContainer.innerHTML = '';
+            tiles.forEach((tile, index) => {
+                const tileElement = document.createElement('div');
+                tileElement.classList.add('tile');
+                if (tile === null) {
+                    tileElement.classList.add('empty');
+                } else {
+                    tileElement.textContent = tile;
+                    tileElement.addEventListener('click', () => moveTile(index));
+                }
+                puzzleContainer.appendChild(tileElement);
+            });
+        }
+
+        // Handle tile movement (swap empty tile with the clicked tile)
+        function moveTile(index) {
+            const emptyIndex = tiles.indexOf(null);
+            const possibleMoves = [
+                emptyIndex - 1, emptyIndex + 1, emptyIndex - puzzleSize, emptyIndex + puzzleSize
+            ];
+            
+            if (possibleMoves.includes(index)) {
+                // Swap tiles
+                tiles[emptyIndex] = tiles[index];
+                tiles[index] = null;
+                renderPuzzle();
+
+                // Check if the puzzle is solved
+                if (isPuzzleSolved()) {
+                    alert('Congratulations! You solved the puzzle!');
+                }
+            }
+        }
+
+        // Check if the puzzle is solved
+        function isPuzzleSolved() {
+            for (let i = 0; i < tiles.length; i++) {
+                if (tiles[i] !== i + 1 && tiles[i] !== null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Reset the puzzle
+        function resetPuzzle() {
+            shufflePuzzle();
+        }
+
+        // Initialize the puzzle on page load
+        window.onload = initializePuzzle;
+    </script>
+
+</body>
+</html>

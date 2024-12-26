@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Teasers for Seniors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #74512D;
+            margin-top: 30px;
+            font-size: 36px;
+        }
+
+        .teaser-container {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .teaser {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #E7D4B5;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .teaser h2 {
+            color: #74512D;
+            font-size: 24px;
+        }
+
+        .answer-input {
+            margin-top: 10px;
+            padding: 15px;
+            border: 1px solid #B6C7AA;
+            border-radius: 5px;
+            font-size: 20px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .answer-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #74512D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .answer-button:hover {
+            background-color: #B6C7AA;
+        }
+
+        .answer-message {
+            margin-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #74512D;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+
+        /* Accessibility improvements */
+        .teaser-container {
+            font-size: 22px;
+        }
+
+        .teaser input {
+            font-size: 22px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>Brain Teasers for Seniors</h1>
+
+    <div class="teaser-container">
+        <!-- Riddle 1 -->
+        <div class="teaser">
+            <h2>Riddle: What has keys but can't open locks?</h2>
+            <input type="text" class="answer-input" id="riddle-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkRiddleAnswer()">Check Answer</button>
+            <p id="riddle-answer-message" class="answer-message"></p>
+        </div>
+
+        <!-- Math Puzzle 1 -->
+        <div class="teaser">
+            <h2>Math Puzzle: What is 5 + 3 × 2?</h2>
+            <input type="text" class="answer-input" id="math-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkMathAnswer()">Check Answer</button>
+            <p id="math-answer-message" class="answer-message"></p>
+        </div>
+
+        <!-- Logic Puzzle 1 -->
+        <div class="teaser">
+            <h2>Logic Puzzle: There are three houses. One is red, one is blue, and one is green. The green house is to the left of the white house. Where is the white house?</h2>
+            <input type="text" class="answer-input" id="logic-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkLogicAnswer()">Check Answer</button>
+            <p id="logic-answer-message" class="answer-message"></p>
+        </div>
+
+        <!-- Pattern Puzzle -->
+        <div class="teaser">
+            <h2>Pattern Puzzle: What comes next in the series? 2, 4, 8, 16, ___?</h2>
+            <input type="text" class="answer-input" id="pattern-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkPatternAnswer()">Check Answer</button>
+            <p id="pattern-answer-message" class="answer-message"></p>
+        </div>
+
+        <!-- Word Puzzle -->
+        <div class="teaser">
+            <h2>Word Puzzle: What word is spelled incorrectly in every dictionary?</h2>
+            <input type="text" class="answer-input" id="word-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkWordAnswer()">Check Answer</button>
+            <p id="word-answer-message" class="answer-message"></p>
+        </div>
+
+        <!-- Memory Puzzle -->
+        <div class="teaser">
+            <h2>Memory Puzzle: What is the color of the sky?</h2>
+            <input type="text" class="answer-input" id="memory-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkMemoryAnswer()">Check Answer</button>
+            <p id="memory-answer-message" class="answer-message"></p>
+        </div>
+
+        <!-- Logical Reasoning -->
+        <div class="teaser">
+            <h2>Logical Reasoning: I am tall when I am young and short when I am old. What am I?</h2>
+            <input type="text" class="answer-input" id="reasoning-answer" placeholder="Your answer here">
+            <button class="answer-button" onclick="checkReasoningAnswer()">Check Answer</button>
+            <p id="reasoning-answer-message" class="answer-message"></p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Elderly Aura | Compassionate Code
+    </div>
+
+    <script>
+        // Check Riddle Answer
+        function checkRiddleAnswer() {
+            const answer = document.getElementById('riddle-answer').value.toLowerCase();
+            const correctAnswer = "piano";
+            const messageElement = document.getElementById('riddle-answer-message');
+
+            if (answer === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        // Check Math Answer
+        function checkMathAnswer() {
+            const answer = document.getElementById('math-answer').value;
+            const correctAnswer = 11; // 5 + (3 * 2) = 11
+            const messageElement = document.getElementById('math-answer-message');
+
+            if (parseInt(answer) === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        // Check Logic Answer
+        function checkLogicAnswer() {
+            const answer = document.getElementById('logic-answer').value.toLowerCase();
+            const correctAnswer = "washington dc";
+            const messageElement = document.getElementById('logic-answer-message');
+
+            if (answer === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        // Check Pattern Answer
+        function checkPatternAnswer() {
+            const answer = document.getElementById('pattern-answer').value;
+            const correctAnswer = "32"; // 2, 4, 8, 16, 32
+            const messageElement = document.getElementById('pattern-answer-message');
+
+            if (answer === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        // Check Word Answer
+        function checkWordAnswer() {
+            const answer = document.getElementById('word-answer').value.toLowerCase();
+            const correctAnswer = "incorrectly";
+            const messageElement = document.getElementById('word-answer-message');
+
+            if (answer === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        // Check Memory Answer
+        function checkMemoryAnswer() {
+            const answer = document.getElementById('memory-answer').value.toLowerCase();
+            const correctAnswer = "blue";
+            const messageElement = document.getElementById('memory-answer-message');
+
+            if (answer === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        // Check Reasoning Answer
+        function checkReasoningAnswer() {
+            const answer = document.getElementById('reasoning-answer').value.toLowerCase();
+            const correctAnswer = "candle";
+            const messageElement = document.getElementById('reasoning-answer-message');
+
+            if (answer === correctAnswer) {
+                messageElement.textContent = "Correct! Well done!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Oops! Try again.";
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
